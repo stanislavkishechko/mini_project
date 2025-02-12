@@ -8,10 +8,15 @@ def register_user(username: str, password: str) -> None:
         print(f"{username} зареєстрований")
 
 
-def authentication_user(username: str, password: str) -> None:
+def authentication_user(username: str, password: str) -> bool:
     if username in users_db:
         hashed_password = users_db[username]
         if hash(password) == hashed_password:
             print(f"Ласкаво просимо {username}")
+            return True
         else:
             print(f"Невірний логін або пароль")
+            return False
+    else:
+        print(f"Невірний логін або пароль")
+        return False
